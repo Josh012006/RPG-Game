@@ -27,6 +27,15 @@ int main()
     sf::Texture CharacterTexture;
     CharacterTexture.loadFromFile("media/hero.png");
 
+    // Déclaration des variables pour suivre l'état des touches de déplacement
+    bool isMovingUp = false;
+    bool isMovingDown = false;
+    bool isMovingLeft = false;
+    bool isMovingRight = false;
+
+    // Création du personnage
+    Character Hero (1, CharacterTexture);
+
 
 
     while(window.isOpen())
@@ -41,37 +50,70 @@ int main()
                 case (sf::Event::Closed):
                     window.close();
                     break;
+
+                case sf::Event::KeyPressed:
+                    switch(event.key.code)
+                    {
+                        case sf::Keyboard::Up:
+                            isMovingUp = true;
+                            break;
+                        case sf::Keyboard::Down:
+                            isMovingDown = true;
+                            break;
+                        case sf::Keyboard::Left:
+                            isMovingLeft = true;
+                            break;
+                        case sf::Keyboard::Right:
+                            isMovingRight = true;
+                            break;
+                        case sf::Keyboard::D:
+                            Hero.run();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case sf::Event::KeyReleased:
+                    switch(event.key.code)
+                    {
+                        case sf::Keyboard::Up:
+                            isMovingUp = false;
+                            break;
+                        case sf::Keyboard::Down:
+                            isMovingDown = false;
+                            break;
+                        case sf::Keyboard::Left:
+                            isMovingLeft = false;
+                            break;
+                        case sf::Keyboard::Right:
+                            isMovingRight = false;
+                            break;
+                        case sf::Keyboard::D:
+                            Hero.walk();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+
             }
         }
 
-        Character Hero (1, CharacterTexture);
 
         // Gestion du déplacement vers le bas
-        while((sf::Keyboard::isKeyPressed((sf::Keyboard::Down))) && (Hero.getCharacterSprite().getPosition().y < (window.getSize().y - 60))) {
-            if(sf::Keyboard::isKeyPressed((sf::Keyboard::B))) {
-                Hero.run();
-            }
+        if(isMovingDown && (Hero.getCharacterSprite().getPosition().y < (window.getSize().y - 60))) {
             Hero.down();
         }
         // Gestion du déplacement vers le haut
-        if((sf::Keyboard::isKeyPressed((sf::Keyboard::Up))) && (Hero.getCharacterSprite().getPosition().y > 12)) {
-            if(sf::Keyboard::isKeyPressed((sf::Keyboard::B))) {
-                Hero.run();
-            }
+        if(isMovingUp && (Hero.getCharacterSprite().getPosition().y > 12)) {
             Hero.up();
         }
         // Gestion du déplacement vers la droite
-        if((sf::Keyboard::isKeyPressed((sf::Keyboard::Right))) && (Hero.getCharacterSprite().getPosition().x < (window.getSize().x - 60))) {
-            if(sf::Keyboard::isKeyPressed((sf::Keyboard::B))) {
-                Hero.run();
-            }
+        if(isMovingRight && (Hero.getCharacterSprite().getPosition().x < (window.getSize().x - 60))) {
             Hero.right();
         }
         // Gestion du déplacement vers la gauche
-        if((sf::Keyboard::isKeyPressed((sf::Keyboard::Left))) && (Hero.getCharacterSprite().getPosition().x > 12)) {
-            if(sf::Keyboard::isKeyPressed((sf::Keyboard::B))) {
-                Hero.run();
-            }
+        if(isMovingLeft && (Hero.getCharacterSprite().getPosition().x > 12)) {
             Hero.left();
         }
 

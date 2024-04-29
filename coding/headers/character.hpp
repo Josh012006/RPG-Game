@@ -25,6 +25,7 @@ public:
 
     // Les méthodes de l'objet
      void run ();
+     void walk();
      void setType (int type);
      sf::Sprite getCharacterSprite();
     // Les méthodes de mouvement

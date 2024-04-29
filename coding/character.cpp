@@ -18,6 +18,10 @@ void Character:: run () {
     speed = 0.1f;
 }
 
+void Character:: walk () {
+    speed = 0.07f;
+}
+
 void Character:: setType (int type) {
     // Assignation du type
     CharacterType = type;
