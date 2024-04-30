@@ -88,7 +88,7 @@ int main()
                         case sf::Keyboard::Right:
                             isMovingRight = false;
                             break;
-                        case sf::Keyboard::B:
+                        case sf::Keyboard::D:
                             Hero.walk();
                             break;
                         default:
