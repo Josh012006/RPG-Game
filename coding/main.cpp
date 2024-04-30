@@ -34,7 +34,7 @@ int main()
     bool isMovingRight = false;
 
     // Création du personnage
-    auto Hero = new Character (1, CharacterTexture);
+    Character Hero (1, CharacterTexture);
 
 
 
@@ -126,6 +126,7 @@ int main()
         //Displaying the frames
         window.display();
     }
+
 
     //Program's end
     return 0;
