@@ -34,7 +34,7 @@ int main()
     bool isMovingRight = false;
 
     // Création du personnage
-    Character Hero (1, CharacterTexture);
+    auto Hero = new Character (1, CharacterTexture);
 
 
 
