@@ -6,4 +6,4 @@ It is written solely in C++.
 I'm currently working on it and it's a great experience for me.
 
 ## Give it a try
-You can see what I've already done by clicking on main.exe. Have fun!!
+You can see what I've already done by clicking on main.exe after the download and after you've unzipped the file. Have fun!!
