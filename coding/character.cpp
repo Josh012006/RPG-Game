@@ -1,6 +1,8 @@
 #include "headers/character.hpp"
 
 
+// Le constructeur de la fonction. Il a deux rôles:
+// Construire le personnage et lui assigner son type
 Character::Character(int type, sf::Texture& texture) {
     // Setting the sprite's texture
     CharacterSprite.setTexture(texture);
@@ -10,18 +12,24 @@ Character::Character(int type, sf::Texture& texture) {
     this -> setType(type);
 }
 
+// Retourne le sprite du caractère pour qu'il puisse être utilisé dans la fonction main
+// pour être dessiner sur la fenêtre
 sf::Sprite Character::getCharacterSprite () {
     return CharacterSprite;
 }
 
+
+// Réguler la vitesse
 void Character:: run () {
-    speed = 0.1f;
+    speed = 0.06f;
 }
 
 void Character:: walk () {
-    speed = 0.07f;
+    speed = 0.03f;
 }
 
+
+// Pour définir le type de personnage à utiliser
 void Character:: setType (int type) {
     // Assignation du type
     CharacterType = type;
@@ -80,35 +88,46 @@ void Character:: setType (int type) {
 }
 
 
+
+
+
 // Les méthodes pour les mouvements
 void Character:: down () {
-    xperso = ((int)(CharacterSprite.getPosition().y / restriction)) % 3;
-    xperso = xperso * dimension;
+    // Génération d'un nombre qui permet de faire défiler les images pour pouvoir faire une animation
+    int considered = ((int)(CharacterSprite.getPosition().y / restriction)) % 3;
+    considered = xperso + considered * dimension;
 
-    CharacterSprite.setTextureRect(sf::IntRect(xperso, yperso, dimension, dimension));
+    // Réinitialisation donc de la partie de l'image à montrer pour l'animation
+    CharacterSprite.setTextureRect(sf::IntRect(considered, yperso, dimension, dimension));
     CharacterSprite.move(0, speed);
 }
 
 void Character:: up () {
-    xperso = ((int)(CharacterSprite.getPosition().y / restriction)) % 3;
-    xperso = xperso * dimension;
+    // Génération d'un nombre qui permet de faire défiler les images pour pouvoir faire une animation
+    int considered = ((int)(CharacterSprite.getPosition().y / restriction)) % 3;
+    considered = xperso + considered * dimension;
 
-    CharacterSprite.setTextureRect(sf::IntRect(xperso, yperso + (dimension * 3), dimension, dimension));
+    // Réinitialisation donc de la partie de l'image à montrer pour l'animation
+    CharacterSprite.setTextureRect(sf::IntRect(considered, yperso + (dimension * 3), dimension, dimension));
     CharacterSprite.move(0, -speed);
 }
 
 void Character:: left () {
-    xperso = ((int)(CharacterSprite.getPosition().x / restriction)) % 3;
-    xperso = xperso * dimension;
+    // Génération d'un nombre qui permet de faire défiler les images pour pouvoir faire une animation
+    int considered = ((int)(CharacterSprite.getPosition().x / restriction)) % 3;
+    considered = xperso + considered * dimension;
 
-    CharacterSprite.setTextureRect(sf::IntRect(xperso, yperso + dimension, dimension, dimension));
+    // Réinitialisation donc de la partie de l'image à montrer pour l'animation
+    CharacterSprite.setTextureRect(sf::IntRect(considered, yperso + dimension, dimension, dimension));
     CharacterSprite.move(-speed, 0);
 }
 
 void Character:: right () {
-    xperso = ((int)(CharacterSprite.getPosition().x / restriction)) % 3;
-    xperso = xperso * dimension;
+    // Génération d'un nombre qui permet de faire défiler les images pour pouvoir faire une animation
+    int considered = ((int)(CharacterSprite.getPosition().x / restriction)) % 3;
+    considered = xperso + considered * dimension;
 
-    CharacterSprite.setTextureRect(sf::IntRect(xperso, yperso + (dimension * 2), dimension, dimension));
+    // Réinitialisation donc de la partie de l'image à montrer pour l'animation
+    CharacterSprite.setTextureRect(sf::IntRect(considered, yperso + (dimension * 2), dimension, dimension));
     CharacterSprite.move(speed, 0);
 }

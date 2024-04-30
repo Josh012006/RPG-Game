@@ -39,7 +39,7 @@ private:
     // Les attributs de l'objet
     sf::Sprite CharacterSprite;
 
-    float speed = 0.07f;
+    float speed = 0.03f;
     int xperso = 0;
     int yperso = 0;
 
