@@ -1,4 +1,5 @@
 #include "headers/Game.hpp"
+#include "headers/SplashState.hpp"
 
 namespace Josh {
     Game::Game(int width, int height, std::string title) {
@@ -6,6 +7,7 @@ namespace Josh {
         _data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
 
         // Implementing our first state
+        _data->machine.AddState(StateRef (new SplashState(this->_data)));
 
         // Running the game
         this->Run();

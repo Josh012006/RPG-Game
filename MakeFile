@@ -1,7 +1,9 @@
 all: compile link
 
 compile:
-	g++ -Isrc/include -c coding/*.cpp
+# Linking all files that contain cpp code
+	g++ -Isrc/include -c coding/*.cpp -c coding/States/*.cpp
 
 link:
+# Linking all SFML libraries
 	g++ *.o -o main -Lsrc/lib -lsfml-graphics -lsfml-window -lsfml-system -lopengl32 -lsfml-audio
