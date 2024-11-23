@@ -3,9 +3,9 @@
 // It's defining our global variables
 
 
-#define SCREEN_WIDTH 1200
-#define SCREEN_HEIGHT 700
+#define SCREEN_WIDTH 1024
+#define SCREEN_HEIGHT 1000
 
 #define SPLASH_STATE_SHOW_TIME 3
 
-#define SPLASH_STATE_BACKGROUND_FILEPATH "media/StateResources/SplashState/backgroundSplash.png"
+#define SPLASH_STATE_BACKGROUND_FILEPATH "media/StateResources/SplashState/splashBackground.jpg"
