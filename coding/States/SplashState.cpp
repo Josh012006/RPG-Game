@@ -41,7 +41,7 @@ namespace Josh {
     }
 
     void SplashState::Draw(float dt) {
-        this->_data->window.clear(sf::Color::Cyan);
+        this->_data->window.clear(sf::Color::Black);
         this->_data->window.draw(this->_background);
         this->_data->window.display();
     }
