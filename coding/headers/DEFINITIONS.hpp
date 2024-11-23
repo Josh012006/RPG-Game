@@ -3,6 +3,8 @@
 // It's defining our global variables
 
 
+#define GAME_NAME "Oathbound"
+
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 1000
 

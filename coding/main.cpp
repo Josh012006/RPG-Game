@@ -5,6 +5,6 @@
 
 int main()
 {
-    Josh::Game(SCREEN_WIDTH, SCREEN_HEIGHT, "RPG Game");
+    Josh::Game(SCREEN_WIDTH, SCREEN_HEIGHT, GAME_NAME);
     return EXIT_SUCCESS;
 }
