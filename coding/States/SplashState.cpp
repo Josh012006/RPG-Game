@@ -1,5 +1,6 @@
 #include <sstream>
 #include "../headers/SplashState.hpp"
+#include "../headers/MainMenuState.hpp"
 #include "../headers/DEFINITIONS.hpp"
 
 #include <iostream>
@@ -36,7 +37,7 @@ namespace Josh {
         // We verify if the defined duration of this has already been taken
         if(this->_clock.getElapsedTime().asSeconds() > SPLASH_STATE_SHOW_TIME) {
             // Switch to the main Menu
-            std::cout << "SplashState ended. Go to Main Menu." << std::endl;
+            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
         }
     }
 
