@@ -6,6 +6,7 @@
 #include "StateMachine.hpp"
 #include "AssetManager.hpp"
 #include "InputManager.hpp"
+#include "Window.hpp"
 
 
 namespace Josh {
@@ -13,7 +14,7 @@ namespace Josh {
     // A structure keeping all the main features of our game
     struct GameData {
         Josh::StateMachine machine;
-        sf::RenderWindow window;
+        Josh::Window window;
         Josh::AssetManager assets;
         Josh::InputManager input;
     };

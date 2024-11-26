@@ -40,8 +40,14 @@ namespace Josh {
 
         // We verify if the defined duration of this has already been taken
         if(this->_clock.getElapsedTime().asSeconds() > SPLASH_STATE_SHOW_TIME) {
-            // Switch to the main Menu
-            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+            // Transition
+            if (!this->_data->window.IsFading()) {
+
+                this->_data->window.StartFade(false, 1.5f); // Fondu de sortie
+
+                // Switch to the main Menu
+                this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+            }
         }
     }
 
