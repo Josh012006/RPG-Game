@@ -18,7 +18,11 @@ namespace Josh {
         this->_data->assets.LoadTexture("Splash State Background", SPLASH_STATE_BACKGROUND_FILEPATH);
 
         // Now setting the background's sprite
-        _background.setTexture(this->_data->assets.GetTexture("Splash State Background"));
+        this->_background.setTexture(this->_data->assets.GetTexture("Splash State Background"));
+
+        // POsition the background
+        this->_background.setPosition((SCREEN_WIDTH / 2) - (this->_background.getGlobalBounds().width / 2),
+                                 (SCREEN_HEIGHT / 2) - (this->_background.getGlobalBounds().height / 2));
     }
 
     void SplashState::HandleInput() {

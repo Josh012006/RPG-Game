@@ -23,7 +23,6 @@ namespace Josh {
 
         // The background of the state
         sf::Sprite _background;
-        sf::Sprite _title;
         sf::Sprite _newGameButton;
         sf::Sprite _continueGameButton;
 

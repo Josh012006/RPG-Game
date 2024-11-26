@@ -4,7 +4,7 @@
 namespace Josh {
     Game::Game(int width, int height, std::string title) {
         // Creating the window
-        _data->window.create(sf::VideoMode(width, height), title);
+        _data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
 
         // Implementing our first state
         _data->machine.AddState(StateRef (new SplashState(this->_data)));
