@@ -1,4 +1,4 @@
-#include "headers/Window.hpp"
+#include "../headers/Window.hpp"
 
 
 namespace Josh {

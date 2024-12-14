@@ -15,7 +15,8 @@ clean:
 
 compile:
 	# Compilation de tous les fichiers CPP avec les flags de pkg-config pour les inclure
-	g++ $(SFML_CFLAGS) -c coding/*.cpp coding/States/*.cpp coding/customed/*.cpp
+	g++ $(SFML_CFLAGS) -c coding/*.cpp coding/States/*.cpp 
+        # coding/customed/*.cpp
 
 link:
 	# Lien des fichiers objets avec les bibliothèques SFML

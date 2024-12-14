@@ -7,6 +7,8 @@ namespace Josh {
 
     class Window: public sf::RenderWindow {
     public:
+
+        Window() : Window(sf::VideoMode(800, 600), "Default Window") {}
         Window(sf::VideoMode mode, const std::string& title);
         ~Window();
 
