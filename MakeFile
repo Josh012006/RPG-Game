@@ -1,23 +1,39 @@
-# Détection du système d'exploitation
 ifeq ($(OS),Windows_NT)
-    SFML_LIBS = -Lsrc/lib -lopengl32
+    # Définir les chemins des en-têtes et des bibliothèques
+    SFML_INCLUDE = src/include
+    SFML_LIB = src/lib
+
+    # Définir le compilateur et les drapeaux
+    CXX = g++
+    CXXFLAGS = -I$(SFML_INCLUDE)  # Inclure les en-têtes SFML
+    LDFLAGS = -L$(SFML_LIB) -lsfml-graphics -lsfml-window -lsfml-system -lopengl32
+
+    all: compile link
+
+    # Compilation des fichiers sources
+    compile:
+	    $(CXX) $(CXXFLAGS) -c coding/*.cpp coding/States/*.cpp
+
+    # Lien des fichiers objets
+    link:
+	    $(CXX) *.o -o main $(LDFLAGS)
+
+    # Nettoyage des fichiers générés
+    clean:
+	    del *.o main.exe
 else
-    # Utilisation de pkg-config pour récupérer les bonnes flags pour SFML
+    # Utilisation de pkg-config pour Linux/MacOS
     SFML_LIBS = $(shell pkg-config --libs sfml-graphics sfml-window sfml-system sfml-audio)
     SFML_CFLAGS = $(shell pkg-config --cflags sfml-graphics sfml-window sfml-system sfml-audio)
+
+    all: clean compile link
+
+    compile:
+	    g++ $(SFML_CFLAGS) -c coding/*.cpp coding/States/*.cpp
+
+    link:
+	    g++ *.o -o main $(SFML_LIBS)
+
+    clean:
+	    rm -f *.o main
 endif
-
-all: clean compile link
-
-clean:
-	# Nettoyage des fichiers objets
-	rm -f *.o main
-
-compile:
-	# Compilation de tous les fichiers CPP avec les flags de pkg-config pour les inclure
-	g++ $(SFML_CFLAGS) -c coding/*.cpp coding/States/*.cpp 
-        # coding/customed/*.cpp
-
-link:
-	# Lien des fichiers objets avec les bibliothèques SFML
-	g++ *.o -o main $(SFML_LIBS)
