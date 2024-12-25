@@ -6,6 +6,11 @@ It is written solely in C++.
 I'm currently working on it and it's a great experience for me. For the moment, I've only really made
 the splashstate and the main menu state.
 
+**24/12/2024**
+
+Right now, I'm making the characters design:
+<img src="media/characters/mc.png" alt="The main character sprite">
+
 ## Give it a try
 You can see what I've already done by clicking on main.exe after the download and after you've unzipped the file. Have fun!!
 
