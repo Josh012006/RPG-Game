@@ -6,10 +6,14 @@ It is written solely in C++.
 I'm currently working on it and it's a great experience for me. For the moment, I've only really made
 the splashstate and the main menu state.
 
-**24/12/2024**
-
 Right now, I'm making the characters design:
+
+**24/12/2024 : the front**
+
 <img src="media/characters/mc.png" alt="The main character sprite">
+
+**25/12/2024 : the back**
+
 <img src="media/characters/mc1.png" alt="The main character sprite">
 
 ## Give it a try
