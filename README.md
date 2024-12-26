@@ -10,6 +10,7 @@ the splashstate and the main menu state.
 
 Right now, I'm making the characters design:
 <img src="media/characters/mc.png" alt="The main character sprite">
+<img src="media/characters/mc1.png" alt="The main character sprite">
 
 ## Give it a try
 You can see what I've already done by clicking on main.exe after the download and after you've unzipped the file. Have fun!!
