@@ -10,11 +10,11 @@ Right now, I'm making the characters design:
 
 **24/12/2024 : the front**
 
-<img src="media/characters/mc.png" alt="The main character sprite">
+<img src="media/characters/front1.png" alt="The main character sprite">
 
 **25/12/2024 : the back**
 
-<img src="media/characters/mc1.png" alt="The main character sprite">
+<img src="media/characters/back1.png" alt="The main character sprite">
 
 ## Give it a try
 You can see what I've already done by clicking on main.exe after the download and after you've unzipped the file. Have fun!!
