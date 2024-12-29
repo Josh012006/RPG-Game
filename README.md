@@ -16,6 +16,10 @@ Right now, I'm making the characters design:
 
 <img src="media/characters/back1.png" alt="The main character sprite">
 
+**28/12/2024 : the right**
+
+<img src="media/characters/right1.png" alt="The main character sprite">
+
 ## Give it a try
 You can see what I've already done by clicking on main.exe after the download and after you've unzipped the file. Have fun!!
 
