@@ -6,7 +6,7 @@ It is written solely in C++.
 I'm currently working on it and it's a great experience for me. For the moment, I've only really made
 the splashstate and the main menu state.
 
-Right now, I'm making the characters design:
+Right now, I'm making the characters design. Just a preview of my pixel art style:
 
 **24/12/2024 : the front**
 
@@ -19,6 +19,10 @@ Right now, I'm making the characters design:
 **28/12/2024 : the right**
 
 <img src="media/characters/right1.png" alt="The main character sprite">
+
+**29/12/2024 : the left**
+
+<img src="media/characters/left1.png" alt="The main character sprite">
 
 ## Give it a try
 You can see what I've already done by clicking on main.exe after the download and after you've unzipped the file. Have fun!!
