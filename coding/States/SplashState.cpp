@@ -43,20 +43,29 @@ namespace Josh {
 
             // Transition
             if (!this->_data->window.IsFading()) {
+                float fadeTime = 1.5f;
+                this->_data->window.StartFade(false, fadeTime); // Fade out
 
-                this->_data->window.StartFade(false, 1.5f); // Fondu de sortie
-
-                // Switch to the main Menu
-                this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+                if(this->_clock.getElapsedTime().asSeconds() > SPLASH_STATE_SHOW_TIME + fadeTime) {
+                    // Switch to the main Menu
+                    this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+                }
             }
 
-            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
         }
+
+        // Updating the fade
+        std::cout << "took here" << std::endl;
+        this->_data->window.UpdateFade(dt);
+
     }
 
     void SplashState::Draw(float dt) {
         this->_data->window.clear(sf::Color::Black);
+
         this->_data->window.draw(this->_background);
+        this->_data->window.DrawFade();
+
         this->_data->window.display();
     }
 }
