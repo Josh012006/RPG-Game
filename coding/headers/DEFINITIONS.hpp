@@ -14,3 +14,7 @@
 #define MAIN_MENU_BACKGROUND_FILEPATH "media/StateResources/MainMenuState/background.png"
 #define MAIN_MENU_NEW_GAME_BUTTON "media/StateResources/MainMenuState/newGameButton.png"
 #define MAIN_MENU_CONTINUE_BUTTON "media/StateResources/MainMenuState/continueGameButton.png"
+
+#define GAME_ICON_WIDTH 134
+#define GAME_ICON_HEIGHT 136
+#define GAME_ICON_FILEPATH "media/gameIcon.png"

@@ -12,7 +12,7 @@ ifeq ($(OS),Windows_NT)
 
     # Compilation des fichiers sources
     compile:
-	    $(CXX) $(CXXFLAGS) -c coding/*.cpp coding/States/*.cpp
+	    $(CXX) $(CXXFLAGS) -c coding/*.cpp coding/States/*.cpp coding/customed/*.cpp
 
     # Lien des fichiers objets
     link:
@@ -29,7 +29,7 @@ else
     all: clean compile link
 
     compile:
-	    g++ $(SFML_CFLAGS) -c coding/*.cpp coding/States/*.cpp
+	    g++ $(SFML_CFLAGS) -c coding/*.cpp coding/States/*.cpp coding/customed/*.cpp
 
     link:
 	    g++ *.o -o main $(SFML_LIBS)

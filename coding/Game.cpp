@@ -1,10 +1,18 @@
 #include "headers/Game.hpp"
 #include "headers/SplashState.hpp"
+#include "headers/DEFINITIONS.hpp"
 
 namespace Josh {
     Game::Game(int width, int height, std::string title) {
         // Creating the window
         _data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+
+        // Set the game's icon
+        _data->assets.LoadTexture("Game Icon", GAME_ICON_FILEPATH);
+        sf::Texture icon_texture = this->_data->assets.GetTexture("Game Icon");
+        sf::Image icon = icon_texture.copyToImage();
+
+        _data->window.setIcon(GAME_ICON_WIDTH, GAME_ICON_HEIGHT, icon.getPixelsPtr());
 
         // Implementing our first state
         _data->machine.AddState(StateRef (new SplashState(this->_data)));

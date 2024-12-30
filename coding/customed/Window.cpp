@@ -9,6 +9,8 @@ namespace Josh {
         this->_fadeOverlay.setFillColor(sf::Color(0, 0, 0, this->_fadeAlpha));
     }
 
+    Window::~Window() {}
+
     void Window::StartFade(bool fadeIn, float time, sf::Color color) {
         this->_isFading = true;
         this->_fadeDirection = fadeIn ? -1 : 1; // -1 pour fadeIn, 1 pour fadeOut

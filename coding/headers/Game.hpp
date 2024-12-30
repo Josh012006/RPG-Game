@@ -14,7 +14,8 @@ namespace Josh {
     // A structure keeping all the main features of our game
     struct GameData {
         Josh::StateMachine machine;
-        sf::RenderWindow window;
+        // sf::RenderWindow window;
+        Josh::Window window;
         Josh::AssetManager assets;
         Josh::InputManager input;
     };
