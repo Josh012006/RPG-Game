@@ -19,6 +19,8 @@ namespace Josh {
         bool IsFading() const;
 
 
+
+
     private:
         sf::RectangleShape _fadeOverlay;
         int _fadeAlpha;

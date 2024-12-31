@@ -29,6 +29,19 @@ namespace Josh {
 
         float accumulator = 0.0f;
 
+        // Load the cursor's sprite and change the cursor
+        this->_data->assets.LoadTexture("Cursor sprite", CURSOR_SPRITE);
+        sf::Texture cursorTexture = this->_data->assets.GetTexture("Cursor sprite");
+
+        sf::Cursor cursor;
+        sf::Vector2<unsigned int> size(50, 50);
+        sf::Vector2<unsigned int> hotspot(14, 6);
+
+        // Change the cursor
+        if (cursor.loadFromPixels(cursorTexture.copyToImage().getPixelsPtr(), size, hotspot)) {
+            this->_data->window.setMouseCursor(cursor);
+        }
+
         // Managing the game loop
         while(this->_data->window.isOpen()) {
 

@@ -46,18 +46,19 @@ namespace Josh {
         // We verify if the defined duration of this has already been taken
         if(elapsedTime > SPLASH_STATE_SHOW_TIME) {
 
+            bool fadeOutEnd = elapsedTime > (SPLASH_STATE_SHOW_TIME + this->_fadeTime);
+
+            if(fadeOutEnd) {
+                // Update the fadeOut variable to prevent the background from being drawn
+                this->_fadeOut = true;
+            }
+
             // Transition
             if (!this->_data->window.IsFading()) {
 
                 this->_data->window.StartFade(false, this->_fadeTime); // Fade out
 
-                if(this->_clock.getElapsedTime().asSeconds() > (SPLASH_STATE_SHOW_TIME + this->_fadeTime - 0.2f)) {
-                    // Update the fadeOut variable to prevent the background from being drawn
-                    this->_fadeOut = true;
-                }
-
-
-                if(this->_clock.getElapsedTime().asSeconds() > (SPLASH_STATE_SHOW_TIME + this->_fadeTime)) {
+                if(fadeOutEnd) {
                     // Switch to the main Menu
                     this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
                 }
