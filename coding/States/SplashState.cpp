@@ -23,6 +23,9 @@ namespace Josh {
         // Position the background
         this->_background.setPosition((SCREEN_WIDTH / 2) - (this->_background.getGlobalBounds().width / 2),
                                  (SCREEN_HEIGHT / 2) - (this->_background.getGlobalBounds().height / 2));
+
+        // Start the fade in effect
+        this->_data->window.StartFade(true, this->_fadeTime);
     }
 
     void SplashState::HandleInput() {
@@ -39,16 +42,6 @@ namespace Josh {
     void SplashState::Update(float dt) {
 
         float elapsedTime = this->_clock.getElapsedTime().asSeconds();
-        float fadeTime = 1.5f;
-
-
-        if (!this->fadedIn && elapsedTime < fadeTime && !this->_data->window.IsFading()) {
-            std::cout << "elapsedTime:" << elapsedTime << std::endl;
-            // Add a fade in effect at the start
-            this->_data->window.StartFade(true, fadeTime);
-
-            this->fadedIn = true;
-        }
 
         // We verify if the defined duration of this has already been taken
         if(elapsedTime > SPLASH_STATE_SHOW_TIME) {
@@ -56,9 +49,15 @@ namespace Josh {
             // Transition
             if (!this->_data->window.IsFading()) {
 
-                this->_data->window.StartFade(false, fadeTime); // Fade out
+                this->_data->window.StartFade(false, this->_fadeTime); // Fade out
 
-                if(this->_clock.getElapsedTime().asSeconds() > (SPLASH_STATE_SHOW_TIME + fadeTime)) {
+                if(this->_clock.getElapsedTime().asSeconds() > (SPLASH_STATE_SHOW_TIME + this->_fadeTime - 0.2f)) {
+                    // Update the fadeOut variable to prevent the background from being drawn
+                    this->_fadeOut = true;
+                }
+
+
+                if(this->_clock.getElapsedTime().asSeconds() > (SPLASH_STATE_SHOW_TIME + this->_fadeTime)) {
                     // Switch to the main Menu
                     this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
                 }
@@ -67,7 +66,6 @@ namespace Josh {
         }
 
         // Updating the fade
-        std::cout << "took here" << std::endl;
         this->_data->window.UpdateFade(dt);
 
     }
@@ -75,7 +73,9 @@ namespace Josh {
     void SplashState::Draw(float dt) {
         this->_data->window.clear(sf::Color::Black);
 
-        this->_data->window.draw(this->_background);
+        if (!this->_fadeOut) {
+            this->_data->window.draw(this->_background);
+        }
         this->_data->window.DrawFade();
 
         this->_data->window.display();

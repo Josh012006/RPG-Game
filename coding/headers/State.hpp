@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 namespace Josh {
     class State {
     public:
@@ -18,6 +20,16 @@ namespace Josh {
         virtual void Resume() {}
 
         virtual ~State() {}
+
+    protected:
+        // Used to keep track of how long the state has been displayed
+        sf::Clock _clock;
+
+        // A boolean to know if the fadeOut has started
+        bool _fadeOut = false;
+
+        // The fadeTime
+        float _fadeTime = 1.5f;
 
     };
 }

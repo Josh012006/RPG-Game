@@ -22,13 +22,7 @@ namespace Josh {
         // We store the GameDataRef here
         GameDataRef _data;
 
-        // Used to keep track of how long the state has been displayed
-        sf::Clock _clock;
-
         // The background of the state
         sf::Sprite _background;
-
-        // A boolean to keep track of the fade in effect
-        bool fadedIn = false;
     };
 }

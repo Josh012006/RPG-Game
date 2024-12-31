@@ -26,7 +26,6 @@ namespace Josh {
         if (_isFading) {
             // Updating the fade progression depending on the time
             _fadeAlpha += _fadeDirection * _fadeSpeed;
-            std::cout << _fadeAlpha << std::endl;
 
             // The fadeAlpha values must be limited between 0 and 255
             if (_fadeAlpha < 0) {
@@ -44,9 +43,6 @@ namespace Josh {
             if (_fadeAlpha <= 0 || _fadeAlpha >= 255) {
                 _isFading = false;
             }
-
-            std::cout << _isFading << std::endl;
-
         }
     }
 

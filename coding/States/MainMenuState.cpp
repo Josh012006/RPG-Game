@@ -28,6 +28,9 @@ namespace Josh {
                                  (SCREEN_HEIGHT / 2) - (this->_newGameButton.getGlobalBounds().height / 2));
         this->_continueGameButton.setPosition((SCREEN_WIDTH / 2) - (this->_continueGameButton.getGlobalBounds().width / 2),
                                  (SCREEN_HEIGHT / 2) - (this->_continueGameButton.getGlobalBounds().height / 2) + 150);
+
+        // Start the fade in effect
+        this->_data->window.StartFade(true, this->_fadeTime);
     }
 
 
@@ -52,6 +55,8 @@ namespace Josh {
 
     void MainMenuState::Update(float dt) {
 
+        // Updating the fade
+        this->_data->window.UpdateFade(dt);
     }
 
 
@@ -61,6 +66,9 @@ namespace Josh {
         this->_data->window.draw(this->_background);
         this->_data->window.draw(this->_newGameButton);
         this->_data->window.draw(this->_continueGameButton);
+
+        this->_data->window.DrawFade();
+
 
         this->_data->window.display();
     }
