@@ -59,4 +59,8 @@ namespace Josh {
         // Return the top state
         return this->_states.top();
     }
+
+    bool StateMachine::IsEmpty() {
+        return this->_states.empty();
+    }
 }

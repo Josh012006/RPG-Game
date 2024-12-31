@@ -38,15 +38,27 @@ namespace Josh {
 
     void SplashState::Update(float dt) {
 
+        float elapsedTime = this->_clock.getElapsedTime().asSeconds();
+        float fadeTime = 1.5f;
+
+
+        if (!this->fadedIn && elapsedTime < fadeTime && !this->_data->window.IsFading()) {
+            std::cout << "elapsedTime:" << elapsedTime << std::endl;
+            // Add a fade in effect at the start
+            this->_data->window.StartFade(true, fadeTime);
+
+            this->fadedIn = true;
+        }
+
         // We verify if the defined duration of this has already been taken
-        if(this->_clock.getElapsedTime().asSeconds() > SPLASH_STATE_SHOW_TIME) {
+        if(elapsedTime > SPLASH_STATE_SHOW_TIME) {
 
             // Transition
             if (!this->_data->window.IsFading()) {
-                float fadeTime = 1.5f;
+
                 this->_data->window.StartFade(false, fadeTime); // Fade out
 
-                if(this->_clock.getElapsedTime().asSeconds() > SPLASH_STATE_SHOW_TIME + fadeTime) {
+                if(this->_clock.getElapsedTime().asSeconds() > (SPLASH_STATE_SHOW_TIME + fadeTime)) {
                     // Switch to the main Menu
                     this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
                 }

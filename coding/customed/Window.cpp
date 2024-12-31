@@ -20,13 +20,12 @@ namespace Josh {
         this->_fadeAlpha = fadeIn ? 255 : 0;
         color.a = this->_fadeAlpha;
         this->_fadeOverlay.setFillColor(color);
-        // sf::Color (color.r, color.g, color.b, this->_fadeAlpha)
     }
 
     void Window::UpdateFade(float dt) {
         if (_isFading) {
             // Updating the fade progression depending on the time
-            _fadeAlpha += _fadeDirection * _fadeSpeed * dt * 255;
+            _fadeAlpha += _fadeDirection * _fadeSpeed;
             std::cout << _fadeAlpha << std::endl;
 
             // The fadeAlpha values must be limited between 0 and 255
@@ -42,9 +41,11 @@ namespace Josh {
             this->_fadeOverlay.setFillColor(currentColor);
 
             // If the fade has ended, stop the effect
-            if (_fadeAlpha == 0 || _fadeAlpha == 255) {
+            if (_fadeAlpha <= 0 || _fadeAlpha >= 255) {
                 _isFading = false;
             }
+
+            std::cout << _isFading << std::endl;
 
         }
     }

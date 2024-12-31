@@ -8,7 +8,7 @@
 #define SCREEN_WIDTH 1792
 #define SCREEN_HEIGHT 990
 
-#define SPLASH_STATE_SHOW_TIME 2.5
+#define SPLASH_STATE_SHOW_TIME 3.5
 #define SPLASH_STATE_BACKGROUND_FILEPATH "media/StateResources/SplashState/splashBackground.jpg"
 
 #define MAIN_MENU_BACKGROUND_FILEPATH "media/StateResources/MainMenuState/background.png"

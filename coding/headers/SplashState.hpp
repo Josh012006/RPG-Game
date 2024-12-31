@@ -27,5 +27,8 @@ namespace Josh {
 
         // The background of the state
         sf::Sprite _background;
+
+        // A boolean to keep track of the fade in effect
+        bool fadedIn = false;
     };
 }

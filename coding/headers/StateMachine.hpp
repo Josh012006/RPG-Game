@@ -25,6 +25,9 @@ namespace Josh {
         // Getting the top level state in the stack
         StateRef& GetActiveState();
 
+        // Checking if the state machine is empty
+        bool IsEmpty();
+
     private:
         std::stack<StateRef> _states; // The stack containing our states
         StateRef _newState; // Variable representing a new state we want to add

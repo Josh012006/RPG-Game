@@ -35,6 +35,11 @@ namespace Josh {
             // We first process any change in the states
             this->_data->machine.ProcessStateChanges();
 
+            // If there are no states left, exit the game loop
+            if (this->_data->machine.IsEmpty()) {
+                break;
+            }
+
             // We keep track of the time
             newTime = this->_clock.getElapsedTime().asSeconds();
 
