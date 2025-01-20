@@ -24,6 +24,7 @@ namespace Josh {
         // The visual components
         sf::Sprite _background;
         sf::Sprite _startGameButton;
+        sf::Sprite _backgroundLayout;
 
         // The font
         sf::Font _mainFont;
