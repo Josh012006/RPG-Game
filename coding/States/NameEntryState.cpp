@@ -23,14 +23,14 @@ namespace Josh {
         this->_data->assets.LoadTexture("BackgroundLayout", BACKGROUND_LAYOUT);
         this->_data->assets.LoadTexture("StartGameButton", "media/StateResources/NameEntryState/startGameButton.png");
 
-        this->_background.setTexture(this->_data->assets.GetTexture("NameEntry"));
-        this->_backgroundLayout.setTexture(this->_data->assets.GetTexture("BackgroundLayout"));
-        this->_startGameButton.setTexture(this->_data->assets.GetTexture("StartGameButton"));
+        //this->_background.setTexture(this->_data->assets.GetTexture("NameEntry"));
+        //this->_backgroundLayout.setTexture(this->_data->assets.GetTexture("BackgroundLayout"));
+        //this->_startGameButton.setTexture(this->_data->assets.GetTexture("StartGameButton"));
 
         // Setting sprites position
 
-        this->_startGameButton.setPosition((SCREEN_WIDTH / 2) - (this->_continueGameButton.getGlobalBounds().width / 2),
-                                              (SCREEN_HEIGHT / 2) - (this->_continueGameButton.getGlobalBounds().height / 2) + 150);
+        //this->_startGameButton.setPosition((SCREEN_WIDTH / 2) - (this->_continueGameButton.getGlobalBounds().width / 2),
+                                              //(SCREEN_HEIGHT / 2) - (this->_continueGameButton.getGlobalBounds().height / 2) + 150);
 
         // Load the font
 
