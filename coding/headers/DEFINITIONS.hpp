@@ -10,6 +10,7 @@
 
 #define GAME_FONT "media/Fonts/mainFont.ttf"
 #define BACKGROUND_LAYOUT "media/backgroundLayout.png"
+#define BUTTON_LAYOUT "media/buttonLayout.png"
 
 #define SPLASH_STATE_SHOW_TIME 3.5
 #define SPLASH_STATE_BACKGROUND_FILEPATH "media/StateResources/SplashState/splashBackground.png"

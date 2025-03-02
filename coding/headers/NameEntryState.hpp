@@ -26,6 +26,8 @@ namespace Josh {
         sf::Sprite _startGameButton;
         sf::Sprite _backgroundLayout;
 
+        sf::Text _myText;
+
         // The font
         sf::Font _mainFont;
 

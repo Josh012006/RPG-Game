@@ -1,6 +1,7 @@
 #include <sstream>
 
 #include "../headers/MainMenuState.hpp"
+#include "../headers/NameEntryState.hpp"
 #include "../headers/DEFINITIONS.hpp"
 
 #include <iostream>
@@ -45,7 +46,7 @@ namespace Josh {
 
             if(this->_data->input.IsSpriteClicked(this->_newGameButton, sf::Mouse::Left, this->_data->window)) {
                 // Switch to the choosing the name
-                // this->_data->machine.AddState(StateRef(new NameEntryState(_data)), true);
+                this->_data->machine.AddState(StateRef(new NameEntryState(_data)), true);
             }
 
             if(this->_data->input.IsSpriteClicked(this->_continueGameButton, sf::Mouse::Left, this->_data->window)) {

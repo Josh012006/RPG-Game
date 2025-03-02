@@ -19,23 +19,31 @@ namespace Josh {
 
         // Load and set textures
 
-        this->_data->assets.LoadTexture("NameEntry", "media/StateResources/NameEntryState/background.png");
+        this->_data->assets.LoadTexture("NameEntry", "media/paper_texture.png");
         this->_data->assets.LoadTexture("BackgroundLayout", BACKGROUND_LAYOUT);
-        this->_data->assets.LoadTexture("StartGameButton", "media/StateResources/NameEntryState/startGameButton.png");
+        this->_data->assets.LoadTexture("StartGameButton", BUTTON_LAYOUT);
 
-        //this->_background.setTexture(this->_data->assets.GetTexture("NameEntry"));
-        //this->_backgroundLayout.setTexture(this->_data->assets.GetTexture("BackgroundLayout"));
-        //this->_startGameButton.setTexture(this->_data->assets.GetTexture("StartGameButton"));
+        this->_background.setTexture(this->_data->assets.GetTexture("NameEntry"));
+        this->_backgroundLayout.setTexture(this->_data->assets.GetTexture("BackgroundLayout"));
+        this->_startGameButton.setTexture(this->_data->assets.GetTexture("StartGameButton"));
 
         // Setting sprites position
 
-        //this->_startGameButton.setPosition((SCREEN_WIDTH / 2) - (this->_continueGameButton.getGlobalBounds().width / 2),
-                                              //(SCREEN_HEIGHT / 2) - (this->_continueGameButton.getGlobalBounds().height / 2) + 150);
+        this->_startGameButton.setPosition((SCREEN_WIDTH / 2) - (this->_startGameButton.getGlobalBounds().width / 2) +450,
+                                              (SCREEN_HEIGHT / 2) - (this->_startGameButton.getGlobalBounds().height / 2) + 350);
 
         // Load the font
 
         this->_data->assets.LoadFont("MainFont", GAME_FONT);
         this->_mainFont = this->_data->assets.GetFont("MainFont");
+
+        // Writing the text for the button
+
+        this->_myText.setFont(this->_mainFont);
+        this->_myText.setCharacterSize(25);
+        this->_myText.setString("Start game");
+        this->_myText.setPosition((SCREEN_WIDTH / 2) - (this->_startGameButton.getGlobalBounds().width / 2) + 520,
+                           (SCREEN_HEIGHT / 2) - (this->_startGameButton.getGlobalBounds().height / 2) + 365);
 
 
         // Start the fade in effect
@@ -74,6 +82,7 @@ namespace Josh {
         this->_data->window.draw(this->_background);
         this->_data->window.draw(this->_backgroundLayout);
         this->_data->window.draw(this->_startGameButton);
+        this->_data->window.draw(this->_myText);
 
         // this->_data->window.DrawFade();
 
