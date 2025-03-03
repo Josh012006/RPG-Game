@@ -38,7 +38,6 @@ namespace Josh {
     void MainMenuState::HandleInput() {
         sf::Event event;
 
-        // The sole event important with the Splash State is the closing event
         while(this->_data->window.pollEvent(event)) {
             if(sf::Event::Closed == event.type) {
                 this->_data->window.close();
