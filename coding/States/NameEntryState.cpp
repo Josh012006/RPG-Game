@@ -56,8 +56,8 @@ namespace Josh {
         this->_instructions.setCharacterSize(30);
         const sf::Color mainColor = sf::Color(58, 18, 16);
         this->_instructions.setFillColor(mainColor);
-        this->_instructions.setString("Please enter your character's name");
-        this->_instructions.setPosition((SCREEN_WIDTH / 2) - 220, 170);
+        this->_instructions.setString("Please enter your character's name. Use your keyboard.");
+        this->_instructions.setPosition((SCREEN_WIDTH / 2) - 370, 170);
 
 
         // Configuring the text for the character's name
