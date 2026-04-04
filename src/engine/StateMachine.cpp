@@ -1,4 +1,4 @@
-#include "headers/StateMachine.hpp"
+#include "../headers/StateMachine.hpp"
 
 namespace Josh {
     void StateMachine::AddState(Josh::StateRef newState, bool isReplacing) {

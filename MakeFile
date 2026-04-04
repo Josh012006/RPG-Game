@@ -1,39 +1,77 @@
 ifeq ($(OS),Windows_NT)
-    # Définir les chemins des en-têtes et des bibliothèques
-    SFML_INCLUDE = src/include
-    SFML_LIB = src/lib
 
-    # Définir le compilateur et les drapeaux
+    # Dossiers
+    SRC_DIR = src
+    BUILD_DIR = build
+    BIN_DIR = bin
+
+    # SFML
+	SFML_INCLUDE = include
+    SFML_LIB = lib
+
+    # Compilateur
     CXX = g++
-    CXXFLAGS = -I$(SFML_INCLUDE)  # Inclure les en-têtes SFML
-    LDFLAGS = -L$(SFML_LIB) -lsfml-graphics -lsfml-window -lsfml-system -lopengl32
+    CXXFLAGS = -I$(SFML_INCLUDE)
+    LDFLAGS = -L$(SFML_LIB) -lsfml-graphics -lsfml-window -lsfml-system -lopengl32 -mconsole
 
+    # Fichiers
+    SRC = $(shell dir /s /b $(SRC_DIR)\*.cpp)
+    OBJ = $(patsubst $(SRC_DIR)\%.cpp, $(BUILD_DIR)/%.o, $(SRC))
+
+    # Build global
     all: compile link
 
-    # Compilation des fichiers sources
-    compile:
-	    $(CXX) $(CXXFLAGS) -c coding/*.cpp coding/States/*.cpp coding/customed/*.cpp
+    # Compilation
+    compile: $(OBJ)
 
-    # Lien des fichiers objets
+    $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@if not exist "$(dir $@)" mkdir "$(dir $@)"
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+    # Link
     link:
-	    $(CXX) *.o -o main $(LDFLAGS)
+	@if not exist "$(BIN_DIR)" mkdir "$(BIN_DIR)"
+	$(CXX) $(OBJ) -o $(BIN_DIR)/main.exe $(LDFLAGS)
 
-    # Nettoyage des fichiers générés
+    # Clean
     clean:
-	    del *.o main.exe
+	rmdir /s /q $(BUILD_DIR)
+	rmdir /s /q $(BIN_DIR)
+
 else
-    # Utilisation de pkg-config pour Linux/MacOS
+
+    # Dossiers
+    SRC_DIR = src
+    BUILD_DIR = build
+
+    # SFML via pkg-config
     SFML_LIBS = $(shell pkg-config --libs sfml-graphics sfml-window sfml-system sfml-audio)
     SFML_CFLAGS = $(shell pkg-config --cflags sfml-graphics sfml-window sfml-system sfml-audio)
 
-    all: clean compile link
+    # Compilateur
+    CXX = g++
+    CXXFLAGS = $(SFML_CFLAGS)
 
-    compile:
-	    g++ $(SFML_CFLAGS) -c coding/*.cpp coding/States/*.cpp coding/customed/*.cpp
+    # Fichiers
+    SRC = $(wildcard $(SRC_DIR)/**/*.cpp)
+    OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SRC))
 
+    # Build global
+    all: compile link
+
+    # Compilation
+    compile: $(OBJ)
+
+    $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+    # Link
     link:
-	    g++ *.o -o main $(SFML_LIBS)
+	$(CXX) $(OBJ) -o bin/main $(SFML_LIBS)
 
+    # Clean
     clean:
-	    rm -f *.o main
+	rm -rf $(BUILD_DIR) main
+
 endif
