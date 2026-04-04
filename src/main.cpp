@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "headers/Game.hpp"
-#include "headers/DEFINITIONS.hpp"
+#include "../include/Oathbound/Game.hpp"
+#include "../include/Oathbound/DEFINITIONS.hpp"
 
 int main()
 {

@@ -1,6 +1,6 @@
-#include "headers/Game.hpp"
-#include "headers/SplashState.hpp"
-#include "headers/DEFINITIONS.hpp"
+#include "../include/Oathbound/Game.hpp"
+#include "../include/Oathbound/SplashState.hpp"
+#include "../include/Oathbound/DEFINITIONS.hpp"
 
 namespace Josh {
     Game::Game(int width, int height, std::string title) {

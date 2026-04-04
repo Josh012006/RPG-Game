@@ -1,7 +1,7 @@
 #include <sstream>
-#include "../headers/SplashState.hpp"
-#include "../headers/MainMenuState.hpp"
-#include "../headers/DEFINITIONS.hpp"
+#include "../../include/Oathbound/SplashState.hpp"
+#include "../../include/Oathbound/MainMenuState.hpp"
+#include "../../include/Oathbound/DEFINITIONS.hpp"
 
 #include <iostream>
 

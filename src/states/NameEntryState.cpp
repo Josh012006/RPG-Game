@@ -1,7 +1,7 @@
 #include <sstream>
 
-#include "../headers/NameEntryState.hpp"
-#include "../headers/DEFINITIONS.hpp"
+#include "../../include/Oathbound/NameEntryState.hpp"
+#include "../../include/Oathbound/DEFINITIONS.hpp"
 
 #include <iostream>
 

@@ -1,4 +1,4 @@
-#include "../headers/CharacterManager.hpp"
+#include "../../include/Oathbound/CharacterManager.hpp"
 
 namespace Josh {
     void CharacterManager::GenerateCharacter(int type, std::string characterName, std::string fileName, Josh::AssetManager& assetManager, int dimensionX, int dimensionY) {

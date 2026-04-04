@@ -1,5 +1,5 @@
-#include "../headers/customed/Window.hpp"
-#include "../headers/DEFINITIONS.hpp"
+#include "../../include/Oathbound/customed/Window.hpp"
+#include "../../include/Oathbound/DEFINITIONS.hpp"
 #include <iostream>
 
 namespace Josh {

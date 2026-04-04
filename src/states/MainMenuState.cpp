@@ -1,8 +1,8 @@
 #include <sstream>
 
-#include "../headers/MainMenuState.hpp"
-#include "../headers/NameEntryState.hpp"
-#include "../headers/DEFINITIONS.hpp"
+#include "../../include/Oathbound/MainMenuState.hpp"
+#include "../../include/Oathbound/NameEntryState.hpp"
+#include "../../include/Oathbound/DEFINITIONS.hpp"
 
 #include <iostream>
 

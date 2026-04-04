@@ -10,7 +10,7 @@
 //#include <SFML/Audio.hpp>
 //#include <SFML/Network.hpp>
 //
-//#include "headers/character.hpp"
+//#include "../include/Oathbound/character.hpp"
 //
 ////Enabling antialiases
 //sf::ContextSettings settings;

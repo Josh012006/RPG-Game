@@ -1,4 +1,4 @@
-#include "../headers/InputManager.hpp"
+#include "../../include/Oathbound/InputManager.hpp"
 
 namespace Josh {
     bool InputManager::IsSpriteClicked(sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow& window) {
