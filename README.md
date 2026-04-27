@@ -150,6 +150,24 @@ cmake --build .
 
 ## Contributions
 
+There are four main contributors to this project right now :
+
+- **Jeff Vieyra**
+
+GitHub : [BJeff17](https://github.com/BJeff17)
+
+- **Anis Morat**
+
+GitHub : [Shiro-qb](https://github.com/Shiro-qb)
+
+- **Gérald Guidi**
+
+Github : [cedric20061](https://github.com/cedric20061)
+
+- **Josué Mongan**
+
+GitHub : [Josh012006](https://github.com/Josh012006)
+
 Contributions are welcome!
 If you want to contribute, please create a branch, make your changes, and submit a pull request.
 
