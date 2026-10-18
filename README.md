@@ -13,13 +13,14 @@ This project is designed to be cross-platform (Windows, Linux, macOS) and uses C
 
 ## Preview
 
-<img src="media/characters/front1.png" alt="The main character sprite">
-
-<img src="media/characters/back1.png" alt="The main character sprite">
-
-<img src="media/characters/right1.png" alt="The main character sprite">
-
-<img src="media/characters/left1.png" alt="The main character sprite">
+<table>
+ <tr>
+  <td><img src="media/characters/front1.png" alt="The front side"></td>
+  <td><img src="media/characters/back1.png" alt="The back side"></td>
+  <td><img src="media/characters/right1.png" alt="The right side"></td>
+  <td><img src="media/characters/left1.png" alt="The left side"></td>
+ </tr>
+</table>
 
 ---
 
