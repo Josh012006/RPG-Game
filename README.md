@@ -1,7 +1,27 @@
 # Oathbound
 
-**Oathbound** is an RPG developed in **C++17** with **SFML 2.6.2**, built with CMake
-(Windows, Linux, macOS).
+**Oathbound** is an RPG game developed in **C++17** using **SFML 2.6.2**.
+This project is designed to be cross-platform (Windows, Linux, macOS) and uses CMake for configuration and compilation.
+---
+
+## Synopsis
+
+> *(Add here the synopsis or story of your RPG. Describe the world, main characters, player’s goal, etc.)*
+
+---
+
+## Preview
+
+<table>
+ <tr>
+  <td><img src="media/characters/front1.png" alt="The front side"></td>
+  <td><img src="media/characters/back1.png" alt="The back side"></td>
+  <td><img src="media/characters/right1.png" alt="The right side"></td>
+  <td><img src="media/characters/left1.png" alt="The left side"></td>
+ </tr>
+</table>
+
+---
 
 ## Features
 
