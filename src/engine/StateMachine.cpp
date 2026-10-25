@@ -1,66 +1,51 @@
-#include "../../include/Oathbound/StateMachine.hpp"
+#include "engine/StateMachine.hpp"
 
-namespace Josh {
-    void StateMachine::AddState(Josh::StateRef newState, bool isReplacing) {
-        this->_isAdding = true; // Specify we are effectively adding a state
-        this->_isReplacing = isReplacing; // Specify if we are replacing an existing state or not based on the second
-                                            // argument of the method
+namespace Oathbound {
 
-        this->_newState = std::move(newState); // Specifying the newState
-    }
+    void StateMachine::Push(StateRef state) { _pending.push_back({Op::Push, std::move(state)}); }
+    void StateMachine::Replace(StateRef state) { _pending.push_back({Op::Replace, std::move(state)}); }
+    void StateMachine::Pop() { _pending.push_back({Op::Pop, nullptr}); }
 
-    void StateMachine::RemoveState() {
-        this->_isRemoving = true; // Specify we are removing a state
-    }
+    void StateMachine::ApplyPending() {
+        // OnEnter() may itself queue more changes: loop until the queue is really empty.
+        while (!_pending.empty()) {
+            std::vector<Command> commands = std::move(_pending);
+            _pending.clear();
 
-    void StateMachine::ProcessStateChanges() {
-        // We are verifying if we want to remove a state and if the states stack is not empty
-        if(this->_isRemoving && !this->_states.empty()) {
-            // Then we remove the top state
-            this->_states.pop();
+            for (Command& cmd : commands) {
+                switch (cmd.op) {
+                    case Op::Push:
+                        if (!_stack.empty()) _stack.back()->OnPause();
+                        _stack.push_back(std::move(cmd.state));
+                        _stack.back()->OnEnter();
+                        break;
 
-            // We verify if the stack is not empty
-            if(!this->_states.empty()) {
-                // We can now go back to the top state or to be precise resume the previous state of the game
-                this->_states.top()->Resume();
-            }
+                    case Op::Replace:
+                        if (!_stack.empty()) {
+                            _stack.back()->OnExit();
+                            _stack.pop_back();
+                        }
+                        _stack.push_back(std::move(cmd.state));
+                        _stack.back()->OnEnter();
+                        break;
 
-            // We ensure we are showing that the removing operation is done in other not to have all states removed
-            this->_isRemoving = false;
-        }
-
-        // Managing the adding of states
-        if(this->_isAdding) {
-            // We want to see if the states stack is not empty in other to verify if we must
-            // replace the last state
-            if(!this->_states.empty()) {
-                // We check if isReplacing is true
-                if(this->_isReplacing) {
-                    // We remove the last state then add the new state
-                    this->_states.pop();
-                }
-                else {
-                    // If we are not replacing we just pause the current state
-                    this->_states.top()->Pause();
+                    case Op::Pop:
+                        if (!_stack.empty()) {
+                            _stack.back()->OnExit();
+                            _stack.pop_back();
+                        }
+                        if (!_stack.empty()) _stack.back()->OnResume();
+                        break;
                 }
             }
-
-            // We then add the new state
-            this->_states.push(std::move(this->_newState));
-            // We then init the new added state
-            this->_states.top()->Init();
-
-            // Then we make sure to specify the adding operation as done
-            this->_isAdding = false;
         }
     }
 
-    StateRef& StateMachine::GetActiveState() {
-        // Return the top state
-        return this->_states.top();
-    }
+    void StateMachine::DrawAll() {
+        if (_stack.empty()) return;
 
-    bool StateMachine::IsEmpty() {
-        return this->_states.empty();
+        std::size_t first = _stack.size() - 1;
+        while (first > 0 && _stack[first]->IsOverlay()) --first;
+        for (std::size_t i = first; i < _stack.size(); ++i) _stack[i]->Draw();
     }
 }

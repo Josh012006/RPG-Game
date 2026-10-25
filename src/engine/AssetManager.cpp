@@ -1,32 +1,28 @@
-#include "../../include/Oathbound/AssetManager.hpp"
+#include "engine/AssetManager.hpp"
 
+#include <stdexcept>
 
-namespace Josh {
-    void AssetManager::LoadTexture(std::string name, std::string fileName) {
-        sf::Texture tex;
-        
-        // Verifying if the loading process is successful and then adding the texture to our textures map
-        if(tex.loadFromFile(fileName)) {
-            this->_textures[name] = tex;
+namespace Oathbound {
+
+    const sf::Texture& AssetManager::Texture(const std::string& path) {
+        auto it = _textures.find(path);
+        if (it != _textures.end()) return *it->second;
+
+        auto texture = std::make_unique<sf::Texture>();
+        if (!texture->loadFromFile(path)) {
+            throw std::runtime_error("cannot load texture '" + path + "'");
         }
-    }
-    
-    sf::Texture& AssetManager::GetTexture(std::string name) {
-        // Return the texture with the keyValue name
-        return this->_textures.at(name);
+        return *(_textures[path] = std::move(texture));
     }
 
-    void AssetManager::LoadFont(std::string name, std::string fileName) {
-        sf::Font font;
+    const sf::Font& AssetManager::Font(const std::string& path) {
+        auto it = _fonts.find(path);
+        if (it != _fonts.end()) return *it->second;
 
-        // Verifying if the loading process is successful and then adding the font to our fonts map
-        if(font.loadFromFile(fileName)) {
-            this->_fonts[name] = font;
+        auto font = std::make_unique<sf::Font>();
+        if (!font->loadFromFile(path)) {
+            throw std::runtime_error("cannot load font '" + path + "'");
         }
-    }
-
-    sf::Font& AssetManager::GetFont(std::string name) {
-        // Return the font with the keyValue name
-        return this->_fonts.at(name);
+        return *(_fonts[path] = std::move(font));
     }
 }
