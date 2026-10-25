@@ -1,0 +1,69 @@
+{
+    "items": [
+        {
+            "id": "gold_coin",
+            "name": "Gold Coin",
+            "description": "Common currency across all realms.",
+            "category": "currency",
+            "maxStack": 9999,
+            "value": 1
+        },
+        {
+            "id": "potion_health",
+            "name": "Health Potion",
+            "description": "A red draught that closes wounds.",
+            "category": "consumable",
+            "maxStack": 20,
+            "value": 25,
+            "aliases": ["health_potion"],
+            "properties": { "heal": 25 }
+        },
+        {
+            "id": "iron_sword",
+            "name": "Iron Sword",
+            "description": "A plain but reliable blade. Wears down with use.",
+            "category": "weapon",
+            "maxStack": 1,
+            "value": 60,
+            "tags": ["melee", "one_handed"],
+            "properties": { "damage": 7, "slot": "main_hand" },
+            "defaultState": { "durability": 100 }
+        },
+        {
+            "id": "wooden_shield",
+            "name": "Wooden Shield",
+            "description": "Splintered, but it still stops arrows.",
+            "category": "armor",
+            "maxStack": 1,
+            "value": 30,
+            "properties": { "defense": 3, "slot": "off_hand" },
+            "defaultState": { "durability": 60 }
+        },
+        {
+            "id": "forest_herb",
+            "name": "Forest Herb",
+            "description": "A fragrant herb that grows in the Dark Forest.",
+            "category": "material",
+            "maxStack": 99,
+            "value": 2
+        },
+        {
+            "id": "crystal_shard",
+            "name": "Crystal Shard",
+            "description": "A glowing fragment torn from the Crystal Caves.",
+            "category": "material",
+            "maxStack": 99,
+            "value": 15,
+            "properties": { "element": "arcane" }
+        },
+        {
+            "id": "rusty_key",
+            "name": "Rusty Key",
+            "description": "Opens something old. Probably.",
+            "category": "quest",
+            "maxStack": 1,
+            "value": 0,
+            "tags": ["quest_item"]
+        }
+    ]
+}

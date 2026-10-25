@@ -1,0 +1,9 @@
+{
+    "level": 1,
+    "inventoryCapacity": 24,
+    "startingItems": [
+        { "id": "iron_sword", "qty": 1 },
+        { "id": "potion_health", "qty": 3 },
+        { "id": "gold_coin", "qty": 25 }
+    ]
+}
