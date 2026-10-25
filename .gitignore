@@ -1,2 +1,7 @@
 .idea
+.vs
 build/
+bin/
+saves/
+*.tmp
+saves

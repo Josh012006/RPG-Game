@@ -1,0 +1,33 @@
+{
+    "worlds": [
+        {
+            "id": "dark_forest",
+            "name": "The Dark Forest",
+            "description": "A mysterious forest filled with ancient secrets and dangerous creatures.",
+            "minimumLevel": 1,
+            "difficulty": "Easy",
+            "background": "media/worlds/The_dark_forest.png"
+        },
+        {
+            "id": "crystal_caves",
+            "name": "The Crystal Caves",
+            "description": "Underground caverns glittering with magical crystals and hidden treasures.",
+            "minimumLevel": 1,
+            "difficulty": "Medium"
+        },
+        {
+            "id": "sky_islands",
+            "name": "The Sky Islands",
+            "description": "Floating islands in the clouds with sky pirates and rare artifacts.",
+            "minimumLevel": 5,
+            "difficulty": "Hard"
+        },
+        {
+            "id": "dragons_peak",
+            "name": "The Dragon's Peak",
+            "description": "A dangerous mountain where the ancient dragon is said to dwell.",
+            "minimumLevel": 10,
+            "difficulty": "Extreme"
+        }
+    ]
+}

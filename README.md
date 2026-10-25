@@ -2,7 +2,6 @@
 
 **Oathbound** is an RPG game developed in **C++17** using **SFML 2.6.2**.
 This project is designed to be cross-platform (Windows, Linux, macOS) and uses CMake for configuration and compilation.
-
 ---
 
 ## Synopsis
@@ -26,160 +25,92 @@ This project is designed to be cross-platform (Windows, Linux, macOS) and uses C
 
 ## Features
 
-* 2D RPG with exploration and combat
-* Inventory and item management
-* Dialogues and interactions with NPCs
-* Quest system and character progression
-* Graphics and audio via SFML 2.6.2
+* 2D RPG with exploration and combat *(planned)*
+* **Inventory and item management** *(implemented: data-driven items, slots, use, save/load)*
+* Dialogues and interactions with NPCs *(planned)*
+* Quest system and character progression *(planned)*
 
----
+## Documentation
 
-## Prerequisites
+Everything about how the project is built lives in [`docs/`](docs/README.md):
 
-Before building the project, make sure you have installed:
+| Start with | |
+|---|---|
+| [Architecture](docs/ARCHITECTURE.md) | Layers, folders, what belongs where, data flow |
+| [Building](docs/guides/building.md) | Requirements, commands, troubleshooting |
+| [How-to recipes](docs/guides/how-to.md) | Add an item, a world, a screen, a save field... |
+| [Conventions](docs/guides/conventions.md) | Coding rules and review checklist |
 
-* **CMake** ≥ 3.16
-* **C++17 compatible compiler**
+Features: [Inventory](docs/features/inventory.md) · [Items](docs/features/items.md) · [Save system](docs/features/save-system.md) · [Player and session](docs/features/player-and-session.md) · [Worlds](docs/features/worlds.md) · [Screens and UI](docs/features/screens-and-ui.md) · [Engine](docs/features/engine.md) · [Data files](docs/reference/data-files.md)
 
-  * Windows: Visual Studio or MinGW
-  * Linux/macOS: GCC or Clang
-* **SFML 2.6.2**
-
-  * Windows: include headers and DLLs in `include` and `lib`
-  * Linux/macOS: via `find_package(SFML 2.6.2 COMPONENTS graphics window system REQUIRED)`
-
----
-
-## Project Structure
+## Project layout
 
 ```
 Oathbound/
-├─ src/              # C++ source files
-├─ include/          # Headers
-├─ lib/              # SFML DLLs (Windows) or static libs
-├─ bin/              # Contains the binary after compilation
-├─ build/            # CMake build folder
-└─ CMakeLists.txt
+├─ src/
+│  ├─ core/       Game rules, data and saves. NO SFML: unit-tested
+│  ├─ engine/     SFML infrastructure: loop, state machine, assets, fade, avatar
+│  ├─ states/     The screens (one class each)
+│  └─ main.cpp
+├─ tests/         Unit tests of core (ctest)
+├─ data/          STATIC game data: items.json, worlds.json, new_game.json
+├─ saves/         Player saves (created at runtime, git-ignored)
+├─ media/         Images and fonts
+├─ third_party/   Bundled headers (nlohmann/json, SFML headers on Windows)
+├─ docs/          Documentation
+└─ lib/           SFML import libs (Windows only)
 ```
 
----
+See [Architecture](docs/ARCHITECTURE.md#4-project-layout) for the full file-by-file layout.
 
-## Build Instructions
+## Build
 
-### 1. Create the build folder
-
-**Windows (PowerShell):**
-
-```powershell
-cd "C:\path\to\Oathbound"
-rmdir build -Recurse -Force
-mkdir build
-cd build
-```
-
-**Windows (cmd):**
-
-```cmd
-cd "C:\path\to\Oathbound"
-rmdir /s /q build
-mkdir build
-cd build
-```
-
-**Linux/macOS:**
+Requirements: CMake >= 3.16, a C++17 compiler, SFML 2.6.x (`graphics window system`).
+On Windows with the bundled SFML, put its headers in `third_party/include/SFML` and its
+libs in `lib/` (DLLs next to the executable in `bin/`).
 
 ```bash
-cd ~/path/to/Oathbound
-rm -rf build
-mkdir build
-cd build
+cmake -S . -B build
+cmake --build build --config Release
 ```
 
----
-
-### 2. Configure the project with CMake
-
-```powershell
-cmake ..
-```
-
-* Configures the project for **Release** and prepares Makefiles / Visual Studio files.
-
----
-
-### 3. Build the project
-
-**Windows:**
-
-```powershell
-cmake --build . --config Release
-```
-
-**Linux/macOS:**
+Run **from the project root** (the game also tries to find it on its own):
 
 ```bash
-cmake --build .
+./bin/oathbound          # Windows: .\bin\oathbound.exe
 ```
 
-* The binary will be generated directly in `bin/`.
-* On Windows, make sure the SFML 2.6.2 DLLs are also in `bin/`.
-
----
-
-### 4. Run the game
-
-**Windows:**
-
-```powershell
-.\bin\main.exe
-```
-
-**Linux/macOS:**
+### Tests
 
 ```bash
-./bin/main
+cmake --build build --config Release --target oathbound_tests
+ctest --test-dir build -C Release --output-on-failure
 ```
 
----
+Build only the tests, without SFML: `cmake -S . -B build -DOATHBOUND_BUILD_GAME=OFF`.
 
-## Notes
+## Controls
 
-* The project is configured to build **Release only**, to ensure compatibility with the SFML DLLs.
-* If you add assets (images, sounds, maps), place them in an appropriate folder and adjust the paths in the code.
+| Where | Keys |
+|---|---|
+| Menus | Mouse / Arrows, Enter, Esc |
+| Gameplay | Arrows / WASD / ZQSD to move, Shift to run, **I** inventory, F5 save, Esc save + menu |
+| Inventory | Arrows, **Enter** use, **X** drop one, **Space** pick up / put down, **S** sort, Esc close |
+| Debug | **F2** gives a random item (`config::kEnableDebugKeys`) |
 
----
+## Upgrading from the prototype saves
+
+Old `data/saveData*.json` files are imported automatically at first launch into `saves/`
+(then renamed `*.migrated`). See [Prototype migration](docs/guides/prototype-migration.md).
 
 ## Contributions
 
-There are four main contributors to this project right now :
-
-- **Jeff Vieyra**
-
-GitHub : [BJeff17](https://github.com/BJeff17)
-
-- **Anis Morat**
-
-GitHub : [Shiro-qb](https://github.com/Shiro-qb)
-
-- **Gérald Guidi**
-
-Github : [cedric20061](https://github.com/cedric20061)
-
-- **Josué Mongan**
-
-GitHub : [Josh012006](https://github.com/Josh012006)
-
-Contributions are welcome!
-If you want to contribute, please create a branch, make your changes, and submit a pull request.
-
----
+Contributors: **Jeff Vieyra** ([BJeff17](https://github.com/BJeff17)),
+**Anis Morat** ([Shiro-qb](https://github.com/Shiro-qb)),
+**Gérald Guidi** ([cedric20061](https://github.com/cedric20061)),
+**Josué Mongan** ([Josh012006](https://github.com/Josh012006)).
+Create a branch, make your changes, and submit a pull request.
 
 ## License
 
-Oathbound is distributed under a **Custom License – Non-Commercial Use with Attribution Requirement**.
-
-* **Non-commercial use only**: the software may not be used for commercial purposes without written permission from all original authors.
-* **Attribution required**: any redistribution or modification must clearly credit the original authors (README, documentation, user interface, etc.).
-* **No warranty**: the software is provided “as is” without any warranty.
-
-See the [LICENSE](LICENSE) file for the full text.
+**Custom License – Non-Commercial Use with Attribution Requirement**. See [LICENSE](LICENSE).

@@ -1,84 +1,42 @@
-#include <sstream>
-#include "../../include/Oathbound/SplashState.hpp"
-#include "../../include/Oathbound/MainMenuState.hpp"
-#include "../../include/Oathbound/DEFINITIONS.hpp"
+#include "states/SplashState.hpp"
 
-#include <iostream>
+#include "engine/Config.hpp"
+#include "states/MainMenuState.hpp"
 
-namespace Josh {
+namespace Oathbound {
 
-    // Assigning the given data to the data attribute of the class
-    SplashState::SplashState(GameDataRef data) : _data(data) {
-        // Add any other necessary implementation here
-        std::cout << "SplashState loaded successfully" << std::endl;
+    void SplashState::OnEnter() {
+        _background.setTexture(_ctx.assets.Texture(paths::kSplashBackground));
+        const sf::FloatRect b = _background.getGlobalBounds();
+        _background.setPosition((config::kScreenWidth - b.width) / 2.0f, (config::kScreenHeight - b.height) / 2.0f);
+
+        _ctx.fade.Start(true, config::kFadeTime);
     }
 
-    void SplashState::Init() {
-        // Loading the background image
-        this->_data->assets.LoadTexture("Splash State Background", SPLASH_STATE_BACKGROUND_FILEPATH);
-
-        // Now setting the background's sprite
-        this->_background.setTexture(this->_data->assets.GetTexture("Splash State Background"));
-
-        // Position the background
-        this->_background.setPosition((SCREEN_WIDTH / 2) - (this->_background.getGlobalBounds().width / 2),
-                                 (SCREEN_HEIGHT / 2) - (this->_background.getGlobalBounds().height / 2));
-
-        // Start the fade in effect
-        this->_data->window.StartFade(true, this->_fadeTime);
-    }
-
-    void SplashState::HandleInput() {
-        sf::Event event;
-
-        // The sole event important with the Splash State is the closing event
-        while(this->_data->window.pollEvent(event)) {
-            if(sf::Event::Closed == event.type) {
-                this->_data->window.close();
-            }
+    void SplashState::HandleEvent(const sf::Event& event) {
+        // Any key or click skips the splash.
+        if (event.type == sf::Event::KeyPressed || event.type == sf::Event::MouseButtonPressed) {
+            BeginLeaving();
         }
+    }
+
+    void SplashState::BeginLeaving() {
+        if (_leaving) return;
+        _leaving = true;
+        _ctx.fade.Start(false, config::kFadeTime);
     }
 
     void SplashState::Update(float dt) {
+        _elapsed += dt;
+        if (_elapsed >= config::kSplashShowTime) BeginLeaving();
 
-        float elapsedTime = this->_clock.getElapsedTime().asSeconds();
-
-        // We verify if the defined duration of this has already been taken
-        if(elapsedTime > SPLASH_STATE_SHOW_TIME) {
-
-            bool fadeOutEnd = elapsedTime > (SPLASH_STATE_SHOW_TIME + this->_fadeTime);
-
-            if(fadeOutEnd) {
-                // Update the fadeOut variable to prevent the background from being drawn
-                this->_fadeOut = true;
-            }
-
-            // Transition
-            if (!this->_data->window.IsFading()) {
-
-                this->_data->window.StartFade(false, this->_fadeTime); // Fade out
-
-                if(fadeOutEnd) {
-                    // Switch to the main Menu
-                    this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
-                }
-            }
-
+        if (_leaving && !_done && !_ctx.fade.IsActive()) {
+            _done = true;
+            _ctx.states.Replace(std::make_unique<MainMenuState>(_ctx));
         }
-
-        // Updating the fade
-        this->_data->window.UpdateFade(dt);
-
     }
 
-    void SplashState::Draw(float dt) {
-        this->_data->window.clear(sf::Color::Black);
-
-        if (!this->_fadeOut) {
-            this->_data->window.draw(this->_background);
-        }
-        this->_data->window.DrawFade();
-
-        this->_data->window.display();
+    void SplashState::Draw() {
+        _ctx.window.draw(_background);
     }
 }
